@@ -68,7 +68,13 @@ def get_gemini_response(user_input):
                 "or other mental health concerns. How can I help you with these issues?")
     
     headers = {"Content-Type": "application/json"}
-    data = {"contents": [{"parts": [{"text": user_input}]}]}
+    data = {
+    "contents": [{"parts": [{"text": user_input}]}],
+    "generationConfig": {
+        "maxOutputTokens": 50
+    }
+}
+
     
     try:
         response = requests.post(GEMINI_API_URL, headers=headers, json=data)
